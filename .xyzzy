@@ -1,0 +1,20 @@
+(require "isearch")
+#(export 'ed::html+-mode "ed")
+#(autoload 'html+-mode "html+-mode" t)
+#(pushnew '("\\.s?html?$" . html+-mode) *auto-mode-alist* :test 'equal)
+
+(require "xml/xml-mode")
+(use-package 'xml)
+
+(push '("\\.dicon$" . xml-mode) *auto-mode-alist*)
+(push '("\\.html$" . xml-mode) *auto-mode-alist*)
+
+(setq indent-tabs-mode nil)
+
+(add-hook '*xml-mode-hook*
+          #'(lambda ()
+              (ed::set-buffer-local 'indent-tabs-mode nil)))
+
+
+(defun utf8n ()
+(revert-buffer *encoding-utf8n*))
